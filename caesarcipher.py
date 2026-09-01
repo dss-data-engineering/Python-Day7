@@ -7,6 +7,10 @@ def encode(candidate_string):
     key = random.randint(0, len(alphabet) - 1)
     encoded_string = ""
     for char in candidate_string:
+        #this if-statement handles spaces and other non-letter characters
+        if char not in alphabet:
+            encoded_string = encoded_string + char
+            continue
         char_index = alphabet.index(char)
         while (char_index + key) == char_index:
             key = random.randint(0, len(alphabet) - 1)
@@ -17,6 +21,10 @@ def encode(candidate_string):
 def decode(candidate_string, key):
     decoded_string = ""
     for char in candidate_string:
+        # this if-statement handles spaces and other non-letter characters
+        if char not in alphabet:
+            decoded_string = decoded_string + char
+            continue
         char_index = alphabet.index(char)
         new_char_index = (char_index - key) % 25
         decoded_string = decoded_string + alphabet[new_char_index]
